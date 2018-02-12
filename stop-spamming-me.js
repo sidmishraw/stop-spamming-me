@@ -5,7 +5,7 @@
  * @description A script for the Mail application to filter out spam-emails using regex. Uses Apple's JavaScript for automation.
  * @created Sat Feb 10 2018 12:23:33 GMT-0800 (PST)
  * @copyright 2018 Sidharth Mishra
- * @last-modified Sun Feb 11 2018 16:19:32 GMT-0800 (PST)
+ * @last-modified Sun Feb 11 2018 17:33:09 GMT-0800 (PST)
  */
 //==============================================================================================
 
@@ -122,7 +122,7 @@
 
       names.forEach(name => {
         if (flag) return; // no need to check any more
-        flag = isWithin(name, email) && containsStarters(name, starters);
+        flag = !isWithin(name, email) && containsStarters(email, starters);
       });
 
       return flag;
@@ -219,13 +219,17 @@
   // Keep running till Mail is running. Run the loop every 5 mins.
   //
   while (isMailRunning) {
-    Mail.checkForNewMail(); // force a check for new emails
-    delay(preDelayTime);
+    try {
+      Mail.checkForNewMail(); // force a check for new emails
+      delay(preDelayTime);
 
-    moveMailToJunk(getSpamEmail(regexes, starters));
+      moveMailToJunk(getSpamEmail(regexes, starters));
 
-    console.log(`Waiting for ${(postDelayTime / 60) | 0} mins before next run...`);
-    delay(postDelayTime);
+      console.log(`Waiting for ${(postDelayTime / 60) | 0} mins before next run...`);
+      delay(postDelayTime);
+    } catch (err) {
+      console.log(`Error: ${JSON.stringify(err.message())}. Retrying...`);
+    }
   }
 
   console.log(

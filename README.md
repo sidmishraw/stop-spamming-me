@@ -28,6 +28,10 @@ Target:
 
 ## Changelog
 
+## v0.1.1
+
+* Minor changes in filtering logic for starters.lst.
+
 ### v0.1.0
 
-* Initial release
+* Initial release.
