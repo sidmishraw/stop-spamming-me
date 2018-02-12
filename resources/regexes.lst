@@ -1,0 +1,36 @@
+#########################################################################################################
+#
+# This is where you write all your regexes for email addresses to dump into JUNK!.
+# Comments for this file begin with the `#` symbol.
+#
+# Valid email addresses's have the following specifications:
+# source: https://en.wikipedia.org/wiki/Email_address#Syntax
+#
+# syntax: `local-part@domain`
+#
+# Local-part:
+# The local-part of the email address may use any of these ASCII characters:
+# * uppercase and lowercase Latin letters A to Z and a to z;
+# * digits 0 to 9;
+# * special characters !#$%&'*+-/=?^_`{|}~;
+# * dot ., provided that it is not the first or last character unless quoted, 
+#   and provided also that it does not appear 
+#   consecutively unless quoted (e.g. John..Doe@example.com is not allowed 
+#   but "John..Doe"@example.com is allowed);
+# * space and "(),:;<>@[\] characters are allowed with 
+#   restrictions (they are only allowed inside a quoted string, as described 
+#   in the paragraph below, and in addition, a backslash or double-quote must be preceded by a backslash);
+# * comments are allowed with parentheses at either end of the local-part; 
+#   e.g. john.smith(comment)@example.com and (comment)john.smith@example.com are both 
+#   equivalent to john.smith@example.com.
+#
+# Domain:
+# * uppercase and lowercase Latin letters A to Z and a to z;
+# * digits 0 to 9, provided that top-level domain names are not all-numeric;
+# * hyphen -, provided that it is not the first or last character.
+#
+#########################################################################################################
+
+# Regexes begin from here:
+([\w\s]+)\<update\@([\w\.\-]+)mail\.\w+\> # generic matcher
+([\w\s]+)\<update\@([\w\.\-]+)mail[\w\.\-]*\.\w+\> # for emails like update@utm.mails-server.com

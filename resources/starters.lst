@@ -1,0 +1,11 @@
+#########################################################################################################
+#
+# This is where you write all your starter words for ignoring email addresses that begin 
+# with those words and to dump them into JUNK!.
+# Comments for this file begin with the `#` symbol.
+#
+#########################################################################################################
+
+# starters begin from here:
+update # boring update emails
+sad-bunkers
